@@ -23,30 +23,30 @@ if not groq_key:
 
 print("loading pdfs")
 
-# loader = DirectoryLoader(
-#     "D:\\farmer_proj_RAG\\farmer-proj\\src\\farmer_proj\\Data",
-#     glob="*.pdf",
-#     loader_cls=PyPDFLoader # type: ignore
-# )
+loader = DirectoryLoader(
+    "D:\\farmer_proj_RAG\\farmer-proj\\src\\farmer_proj\\Data",
+    glob="*.pdf",
+    loader_cls=PyPDFLoader 
+)
 
-# documents = loader.load()
+documents = loader.load()
 
-# for doc in documents:
-#     source = doc.metadata.get("source","")
-#     filename = os.path.basename(source)
-#     district = os.path.splitext(filename)[0]
-#     doc.metadata["district"] = district
+for doc in documents:
+    source = doc.metadata.get("source","")
+    filename = os.path.basename(source)
+    district = os.path.splitext(filename)[0]
+    doc.metadata["district"] = district
 
 
 
-# splitter = RecursiveCharacterTextSplitter(
-#     chunk_size=500,
-#     chunk_overlap=80
-# )
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,
+    chunk_overlap=80
+)
 
-# chunks = splitter.split_documents(documents)
+chunks = splitter.split_documents(documents)
 
-# print(f"{len(chunks)} number of chunks created")
+print(f"{len(chunks)} number of chunks created")
 
 
 embedding = HuggingFaceEmbeddings(
