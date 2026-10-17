@@ -62,14 +62,14 @@ if os.path.exists(persist_directory):
             persist_directory=persist_directory,
             embedding_function=embedding
     )
-# else:
-#     print("creating vector database")
+else:
+    print("creating vector database")
 
-    # db=Chroma.from_documents(
-    #     chunks,
-    #     embedding,
-    #     persist_directory=persist_directory
-    # )
+    db=Chroma.from_documents(
+        chunks,
+        embedding,
+        persist_directory=persist_directory
+    )
 
 data = db.get(include=["metadatas"])
 
